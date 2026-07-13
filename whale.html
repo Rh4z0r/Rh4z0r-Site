@@ -2,136 +2,202 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Hello whaler!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale</title>
     <style>
+        * { box-sizing: border-box; }
         body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            text-align: center;
-            background-color: #f0f2f5;
-            padding-top: 50px;
-            color: #2c3e50;
-        }
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #7f8c8d;
-            font-size: 1.1em;
-        }
-
-        /* --- Hier beginnt das witzige Testbild --- */
-        .testbild-container {
-            margin: 50px auto;
-            width: 300px;
-            height: 300px;
-            background-color: #3498db; /* Docker Blau */
-            border-radius: 50%; /* Rundes Selfie */
-            border: 10px solid white;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            color: #eaf7ff;
             position: relative;
-            overflow: hidden; /* Damit der Wal nicht ausbricht */
+            overflow: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("assets/background.svg");
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 7, 18, 0.75);
+            z-index: -1;
+        }
+        .logo {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 180px;
+            max-width: calc(100vw - 32px);
+            height: auto;
+            z-index: 2;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            padding: 14px 16px;
+            z-index: 5;
+            background: rgba(3, 8, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(111, 230, 255, 0.16);
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-link {
+            color: #eaf7ff;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .nav-link:hover {
+            background: rgba(111, 230, 255, 0.16);
+            transform: translateY(-1px);
+        }
+        .card {
+            width: min(92vw, 860px);
+            background: rgba(4, 12, 24, 0.8);
+            border: 1px solid rgba(111, 230, 255, 0.25);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(16px);
+            text-align: center;
+        }
+        h1 { margin: 0 0 12px; font-size: clamp(1.8rem, 3.5vw, 2.4rem); }
+        .poem {
+            margin: 16px auto 24px;
+            max-width: 560px;
+            color: #a9c8dd;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+        .testbild-container {
+            margin: 0 auto;
+            width: 280px;
+            height: 280px;
+            background: linear-gradient(145deg, #2f8dff, #0b4fae);
+            border-radius: 50%;
+            border: 10px solid rgba(255,255,255,0.2);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
             transition: transform 0.3s ease;
         }
-
-        .testbild-container:hover {
-            transform: scale(1.05) rotate(5deg); /* Kleiner Wackeleffekt */
-        }
-
-        /* Der Wal-Körper */
+        .testbild-container:hover { transform: scale(1.03) rotate(2deg); }
         .wal-body {
-            width: 150px;
-            height: 100px;
-            background-color: #fff;
-            border-radius: 50% 50% 10px 10px;
+            width: 140px;
+            height: 92px;
+            background: #f4fbff;
+            border-radius: 50% 50% 12px 12px;
             position: absolute;
-            bottom: 30px;
-            left: 75px;
+            bottom: 36px;
+            left: 70px;
         }
-
-        /* Die Augen */
         .auge {
-            width: 15px;
-            height: 15px;
-            background-color: #2c3e50;
+            width: 14px;
+            height: 14px;
+            background: #0b1422;
             border-radius: 50%;
             position: absolute;
-            top: 30px;
+            top: 28px;
         }
-        .auge.links { left: 35px; }
-        .auge.rechts { right: 35px; }
-
-        /* Das Lächeln */
+        .auge.links { left: 34px; }
+        .auge.rechts { right: 34px; }
         .mund {
-            width: 60px;
-            height: 20px;
-            border: 5px solid #2c3e50;
+            width: 52px;
+            height: 16px;
+            border: 4px solid #0b1422;
             border-top: none;
             border-radius: 0 0 30px 30px;
             position: absolute;
-            top: 55px;
-            left: 45px;
+            top: 50px;
+            left: 44px;
         }
-
-        /* Die Wasserfontäne */
         .fontaene {
-            width: 10px;
-            height: 30px;
-            background-color: #aadbff;
+            width: 8px;
+            height: 28px;
+            background: #8fd1ff;
             position: absolute;
-            top: -25px;
+            top: -24px;
             left: 70px;
-            border-radius: 5px;
+            border-radius: 999px;
             animation: spritz 1s infinite;
         }
-
-        @keyframes spritz {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Sprechblase */
+        @keyframes spritz { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
         .sprechblase {
             position: absolute;
             top: 20px;
             right: 20px;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 15px;
-            font-weight: bold;
-            font-size: 0.9em;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background: #fff;
+            color: #0b1422;
+            padding: 10px 12px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.18);
         }
-        /* --- Ende des Testbild-Codes --- */
-
+        .home-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: #8fd1ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .home-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <h1>Der Herr der Tiefe 🎉</h1>
-    <p>In tiefem Blau, so still und weit,<br>
-zieht er dahin durch Raum und Zeit.<br>
-Ein Berg aus Fleisch, ein Herz so groß,<br>
-im weiten, wilden Meereschoß.<br>
-<br>
-Sein Lied erklingt wie Geisterhauch,<br>
-ein tiefes Dröhnen im Meeresbauch.<br>
-Er singt von fernen, kalten Welten,<br>
-wo nur die stillen Wunder gelten.<br>
-<br
-Dann taucht er auf mit Macht und Pracht,<br>
-ein Silberrücken in der Nacht.<br
-Ein Atemstoß, ein Wasserstrahl,<br>
-so frei und stolz – das ist der Wal.</p>
-    
-    <div class="testbild-container">
-        <div class="fontaene"></div>
-        <div class="wal-body">
-            <div class="auge links"></div>
-            <div class="auge rechts"></div>
-            <div class="mund"></div>
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="forward.html" class="nav-link">Forward</a>
+            <a href="whale.html" class="nav-link">Whale</a>
+            <a href="pyhton.html" class="nav-link">Python Terminal</a>
         </div>
-        <div class="sprechblase">Servus! 👋</div>
-    </div>
+    </nav>
 
+    <a href="index.html"><img src="assets/logo.svg" alt="Rh4z0r's Edge Logo" class="logo"></a>
+
+    <main class="card">
+        <h1>Der Herr der Tiefe</h1>
+        <p class="poem">
+            In tiefem Blau, so still und weit,<br>
+            zieht er dahin durch Raum und Zeit.<br>
+            Ein Berg aus Fleisch, ein Herz so groß,<br>
+            im weiten, wilden Meereschoß.
+        </p>
+
+        <div class="testbild-container">
+            <div class="fontaene"></div>
+            <div class="wal-body">
+                <div class="auge links"></div>
+                <div class="auge rechts"></div>
+                <div class="mund"></div>
+            </div>
+            <div class="sprechblase">Servus! 👋</div>
+        </div>
+
+        <a class="home-link" href="index.html">← Zur Startseite</a>
+    </main>
 </body>
 </html>

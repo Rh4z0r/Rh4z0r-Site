@@ -2,32 +2,130 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Button is working!!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forward</title>
     <style>
+        * { box-sizing: border-box; }
         body {
-            font-family: sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #eaf7ff;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("assets/background.svg");
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 7, 18, 0.75);
+            z-index: -1;
+        }
+        .logo {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 180px;
+            max-width: calc(100vw - 32px);
+            height: auto;
+            z-index: 2;
+        }
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            padding: 14px 16px;
+            z-index: 5;
+            background: rgba(3, 8, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(111, 230, 255, 0.16);
+        }
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-link {
+            color: #eaf7ff;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .nav-link:hover {
+            background: rgba(111, 230, 255, 0.16);
+            transform: translateY(-1px);
+        }
+        .card {
+            width: min(92vw, 760px);
+            background: rgba(4, 12, 24, 0.8);
+            border: 1px solid rgba(111, 230, 255, 0.25);
+            border-radius: 24px;
+            padding: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(16px);
             text-align: center;
-            background-color: #f0f2f5;
-            padding-top: 50px;
         }
-        h1 {
-            color: #2c3e50;
-        }
-        p {
-            color: #7f8c8d;
-        }
+        h1 { margin: 0 0 10px; font-size: clamp(1.8rem, 3.5vw, 2.4rem); }
+        p { color: #a9c8dd; line-height: 1.6; }
         .gif-container {
-            margin-top: 30px;
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
         }
+        iframe {
+            border-radius: 16px;
+            max-width: 100%;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .home-link {
+            display: inline-block;
+            margin-top: 18px;
+            color: #8fd1ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .home-link:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <h1>Up and Running 🎉</h1>
-    <p>Heartbeat... beat... beat... beat... </p>
-    
-    <div class="gif-container">
-<iframe src="https://giphy.com/embed/xT9IgG50Fb7Mi0prBC" width="480" height="240" style="" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hello-hi-wave-xT9IgG50Fb7Mi0prBC">via GIPHY</a></p>
-    </div>
+    <nav class="nav-bar">
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="forward.html" class="nav-link">Forward</a>
+            <a href="whale.html" class="nav-link">Whale</a>
+            <a href="pyhton.html" class="nav-link">Python Terminal</a>
+        </div>
+    </nav>
+
+    <a href="index.html"><img src="assets/logo.svg" alt="Rh4z0r's Edge Logo" class="logo"></a>
+
+    <main class="card">
+        <h1>Up and Running 🎉</h1>
+        <p>Heartbeat... beat... beat... beat...</p>
+
+        <div class="gif-container">
+            <iframe src="https://giphy.com/embed/xT9IgG50Fb7Mi0prBC" width="480" height="240" frameborder="0" class="giphy-embed" allowfullscreen></iframe>
+        </div>
+        <a class="home-link" href="index.html">← Zur Startseite</a>
+    </main>
 </body>
 </html>
 

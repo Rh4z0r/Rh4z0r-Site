@@ -1,0 +1,16 @@
+<svg width="220" height="72" viewBox="0 0 220 72" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6fe6ff" />
+      <stop offset="100%" stop-color="#2f8dff" />
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="212" height="64" rx="20" fill="#050816" stroke="url(#logoGrad)" stroke-width="2" />
+  <path d="M30 48 L30 24 L46 24 L46 48" stroke="url(#logoGrad)" stroke-width="4" fill="none" stroke-linecap="round" />
+  <path d="M46 36 L62 36" stroke="url(#logoGrad)" stroke-width="4" stroke-linecap="round" />
+  <path d="M70 24 L94 48 L118 24" stroke="url(#logoGrad)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M128 24 L128 48 M128 36 L152 36" stroke="url(#logoGrad)" stroke-width="4" stroke-linecap="round" />
+  <path d="M162 24 C172 24, 180 30, 180 36 C180 42, 172 48, 162 48" stroke="url(#logoGrad)" stroke-width="4" fill="none" stroke-linecap="round" />
+  <text x="34" y="21" fill="#eaf7ff" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="2">RH4Z0R'S</text>
+  <text x="120" y="21" fill="#6fe6ff" font-family="Segoe UI, Arial, sans-serif" font-size="11" letter-spacing="2">EDGE</text>
+</svg>
